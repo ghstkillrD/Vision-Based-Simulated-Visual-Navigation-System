@@ -22,14 +22,14 @@ def detect_apple(image_path, show_windows=True):
     # Convert to HSV color space
     hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     
-    # DEFINE YOUR HSV RANGE HERE (The values you found that worked!)
-    lower_red = np.array([0, 100, 100])   # <- Adjust these based on your debug results
-    upper_red = np.array([10, 255, 255])  # <- Adjust these based on your debug results
+    # Define HSC range
+    lower_red = np.array([0, 100, 100])
+    upper_red = np.array([10, 255, 255])
     
     # Create a mask
     mask = cv2.inRange(hsv_image, lower_red, upper_red)
     
-    # Clean up the mask using morphological operations (removes small noise)
+    # Clean up the mask using morphological operations
     kernel = np.ones((5, 5), np.uint8)
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
     mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
@@ -37,7 +37,7 @@ def detect_apple(image_path, show_windows=True):
     # Find contours
     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     
-    # If contours are found, find the largest one
+    # Find the largest contour
     if contours:
         largest_contour = max(contours, key=cv2.contourArea)
         # Calculate the center of the contour
@@ -45,9 +45,8 @@ def detect_apple(image_path, show_windows=True):
         center = (int(x), int(y))
         radius = int(radius)
         
-        # Only consider it a valid detection if the blob is reasonably sized
         if radius > 5: 
-            # Draw the detection on the output image
+            # Draw detection on the output image
             cv2.circle(output_image, center, radius, (0, 255, 0), 2)
             cv2.circle(output_image, center, 3, (0, 255, 0), -1)
             
@@ -72,12 +71,6 @@ def detect_apple(image_path, show_windows=True):
     return None
 
 # Test the function on different images
-if __name__ == "_main_":
+if __name__ == "__main__":
     print("Testing on simulated world...")
     detect_apple('../data/simulated_world.png')
-    
-    # Uncomment the lines below to test on your real apple images once you have them!
-    # print("\nTesting on real apple image 1...")
-    # detect_apple('../data/apple_1.jpg')
-    # print("\nTesting on real apple image 2...")
-    # detect_apple('../data/apple_2.jpg')
