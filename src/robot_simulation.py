@@ -1,11 +1,10 @@
-# robot_simulation.py
 import numpy as np
 import matplotlib.pyplot as plt
 
 class DifferentialDriveRobot:
     """A class to simulate a differential drive robot."""
     
-    def _init_(self, x=0, y=0, theta=0, wheel_base=20):
+    def __init__(self, x=0, y=0, theta=0, wheel_base=20):
         """
         Initialize the robot's state.
         Args:
@@ -84,7 +83,7 @@ class DifferentialDriveRobot:
         # 3. Calculate and plot distance to goal (error) over time
         distances_to_goal = []
         for x, y in zip(self.path_x, self.path_y):
-            dist = np.sqrt((goal_x - x)*2 + (goal_y - y)*2)
+            dist = np.sqrt((goal_x - x)**2 + (goal_y - y)**2)
             distances_to_goal.append(dist)
             
         plt.subplot(2, 2, 3)
@@ -110,8 +109,7 @@ class DifferentialDriveRobot:
         plt.savefig('../results/performance_plots.png')  # Save the combined figure
         plt.show()
         
-        # Also save the individual plots for the report
-        # ... (You could add code here to save each subplot individually if needed)
+        # Save the individual plots
         print("All performance plots saved to '../results/performance_plots.png'")
 
 def main():
@@ -119,7 +117,7 @@ def main():
     # Create a robot instance starting at (50, 250), facing right (0 radians)
     robot = DifferentialDriveRobot(x=50, y=250, theta=0)
     
-    # Define the goal position (where the apple is in the simulated world)
+    # Define the goal position
     goal_x, goal_y = 400, 400
     
     # Simulation parameters
@@ -133,11 +131,10 @@ def main():
         x, y, theta = robot.get_pose()
         
         # 2. Calculate distance and angle to the goal
-        distance_to_goal = np.sqrt((goal_x - x)*2 + (goal_y - y)*2)
+        distance_to_goal = np.sqrt((goal_x - x)**2 + (goal_y - y)**2)
         angle_to_goal = np.arctan2(goal_y - y, goal_x - x)
         
         # 3. Simple go-to-goal controller
-        # If we are close to the goal, stop
         if distance_to_goal < 10:
             print("Goal reached!")
             reached_goal = True
@@ -151,11 +148,10 @@ def main():
         # Set base forward velocity
         base_speed = 5.0
         # Adjust wheel speeds based on angle error
-        # If pointing the right way, go straight. If not, turn.
-        if abs(angle_error) > 0.2:  # If error is large, turn in place
-            v_left = -np.sign(angle_error) * 2.0  # Turn left or right
+        if abs(angle_error) > 0.2:
+            v_left = -np.sign(angle_error) * 2.0
             v_right = np.sign(angle_error) * 2.0
-        else:  # Otherwise, move forward while correcting slightly
+        else:  # Else, move forward while correcting slightly
             v_left = base_speed - 2.0 * angle_error
             v_right = base_speed + 2.0 * angle_error
             
@@ -169,11 +165,10 @@ def main():
     if not reached_goal:
         print("Stopped after maximum steps.")
         
-    # After the simulation loop ends:
     # Plot the robot's path and generate performance plots
     robot.plot_performance(goal_x, goal_y)
     
     print("Simulation complete. Plot saved to '../results/robot_path.png'")
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()
