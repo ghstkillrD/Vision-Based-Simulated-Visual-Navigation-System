@@ -167,8 +167,6 @@ def main():
         
     # Plot the robot's path and generate performance plots
     robot.plot_performance(goal_x, goal_y)
-    
-    print("Simulation complete. Plot saved to '../results/robot_path.png'")
 
 if __name__ == "__main__":
     main()

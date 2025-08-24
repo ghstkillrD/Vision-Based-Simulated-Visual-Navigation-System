@@ -73,4 +73,4 @@ def detect_apple(image_path, show_windows=True):
 # Test the function on different images
 if __name__ == "__main__":
     print("Testing on simulated world...")
-    detect_apple('../data/simulated_world.png')
+    detect_apple('../data/3_100.jpg')
