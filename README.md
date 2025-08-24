@@ -7,10 +7,10 @@ This repository contains the code and report for our group assignment in **Intel
 ## 👥 Team Members & Roles
 | Name | Student ID | Role |
 | :--- | :--- | :--- |
-| [Name of Project Manager] | [ID] | Project Manager / Report Lead |
-| [Name of Detection Lead] | [ID] | Detection Lead (Task 2) |
-| [Name of Simulation Lead] | [ID] | Simulation Lead (Task 3) |
-| [Name of Integration Lead] | [ID] | Integration & Visualization Lead (Task 4) |
+| R.M.H.D. Ranathunga | CS/2019/060 | Project Design, Lead & Documentation |
+| A.M.P.R. Malindu | CS/2019/024 | Object Detection |
+| R.W.M.N. Dilruksha | CS/2019/062 | Localization & Motion Simulation |
+| A.M.R.H. Andrady | CS/2019/042 | System Integration |
 
 
 ## Steps
