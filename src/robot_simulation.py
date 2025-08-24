@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 class DifferentialDriveRobot:
     """A class to simulate a differential drive robot."""
     
-    def _init_(self, x=0, y=0, theta=0, wheel_base=20):
+    def __init__(self, x=0, y=0, theta=0, wheel_base=20):
         """
         Initialize the robot's state.
         Args:
@@ -175,5 +175,5 @@ def main():
     
     print("Simulation complete. Plot saved to '../results/robot_path.png'")
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()
