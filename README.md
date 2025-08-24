@@ -14,7 +14,6 @@ This repository contains the code and report for our group assignment in **Intel
 
 
 ## 📁 Repository Structure
-UOK-AINT44052-Visual-Navigation/
 ├── data/  # Sample images and generated test worlds
 ├── results/  # Generated plots, screenshots, and visuals for the report
 ├── src/  # All Python source code
